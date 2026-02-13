@@ -1,5 +1,16 @@
 # Auto Splitters
 A collection of LiveSplit auto splitters I've worked on
+*Note: Manual installation might not be necessary if I've already pushed the game to LiveSplit. To check, check the automatic installation instructions below*
+
+## Automatic Installation Guide
+
+**Prerequisite**: Ensure you have LiveSplit installed, you can find the download page [here](https://livesplit.org/downloads/).
+   - After installing LiveSplit, navigate to your `LiveSplit_X.Y.Z\` folder and run `LiveSplit.exe`
+   - Once the timer appears, **right click** it and click `Edit Splits...`
+   - Type in the game name in the top bar, and select it from the dropdown
+   - The auto splitter should appear below automatically! Click `Activate` to enable it, and `Settings` to configure it
+   - *Note: If the auto splitter isn't showing, ensure you typed the game name correctly - if it's still not showing, the game might not be added to LiveSplit's auto splitter repository yet. In that case, refer to the manual installation below.*
+
 ## Manual Installation Guide
 
 **Prerequisite**: Ensure **LiveSplit** is completely **CLOSED** before starting.
