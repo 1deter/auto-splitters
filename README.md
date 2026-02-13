@@ -21,3 +21,7 @@ A collection of LiveSplit auto splitters I've worked on
    - Click **Browse** next to "Script Path".
    - Navigate to your **LiveSplit folder** -> open `LiveSplit_X.Y.Z\Auto Splitter\` -> and select `Game Name.asl`.
    - *Note: If you don't have the `Auto Splitter\` folder inside of `LiveSplit_X.Y.Z\`, ensure you followed step 2 correctly.*
+
+## Usage & Feature Guides
+
+- You can find these inside of each respective game's folder, e.g. for **The Forest**: `The Forest\INSTALLATION & USAGE README.md`, click on it to read it - similar to a text file.
