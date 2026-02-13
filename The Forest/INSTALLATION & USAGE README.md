@@ -1,5 +1,4 @@
 # The Forest Auto Splitter
-
 ---
 
 ## Current Features & Usage
