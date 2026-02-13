@@ -48,3 +48,5 @@ To use these features, add the **ASL Var Viewer** component to your layout.
 * **"Only part of a ReadProcessMemory..." Error**: This is normal in Event Viewer while LiveSplit waits for the game to launch.
 * **"The handle is invalid" Error**: This is another normal error in Event Viewer as the game exits/relaunches.
 * **Inventory Counts**: Item counts may not reset immediately upon exiting to the menu but will correct themselves once you restart the timer.
+
+*For any issues please contact d.eter on Discord, or reach out to [The Forest Speedrunning Discord](https://discord.gg/kCVSq5nXRE)*
