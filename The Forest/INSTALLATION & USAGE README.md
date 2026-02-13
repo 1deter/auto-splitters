@@ -2,15 +2,15 @@
 
 ## Installation Guide
 
-**Prerequisite:** Ensure **LiveSplit** is completely **CLOSED** before starting.
+**Prerequisite**: Ensure **LiveSplit** is completely **CLOSED** before starting.
 
 1. **Download & Extract**:
    - Download the repo [here](https://github.com/1deter/auto-splitters/archive/refs/heads/main.zip).
    - Right click the zip -> **Extract All**.
-   - Open `auto-splitters-main\The Forest\`.
+   - Open `auto-splitters-main\Game Name\`.
 2. **Move Files**:
-   - Select the `Components\` and `Auto Splitter\` folders inside of `auto-splitters-main\The Forest\`.
-   - Cut (Ctrl + X) and paste (Ctrl + V) them directly into your main **LiveSplit installation folder** (usually called `LiveSplit\`).
+   - Select the `Components\` and `Auto Splitter\` folders inside of `auto-splitters-main\Game Name\`.
+   - Cut (Ctrl + X) and paste (Ctrl + V) them directly into your **LiveSplit installation folder** (usually called `LiveSplit_X.Y.Z\`).
    - *Note: If asked to replace/merge files, click **Yes**.*
 3. **Add to Layout**:
    - Open LiveSplit.
@@ -19,7 +19,7 @@
 4. **Load Script**:
    - Double-click the newly added **Scriptable Auto Splitter** in the layout list.
    - Click **Browse** next to "Script Path".
-   - Navigate to your LiveSplit folder -> `Auto Splitter` -> select `The Forest.asl`.
+   - Navigate to your **LiveSplit folder** -> open `LiveSplit_X.Y.Z\Auto Splitter\` -> and select `Game Name.asl`.
 
 ---
 
@@ -55,7 +55,7 @@
   * Gold Keycard (Red Elevator)
   * Game End
 
-### Variable Viewer (Inventory item tracker | Speedometer | Found passengers counter)
+### Variable Viewer (Inventory item tracker | Speedometer | Found passengers counter | Load counter)
 To use these features, add the **ASL Var Viewer** component to your layout.
    - In the Layout Editor, click **(+)** -> **Information** -> **ASL Var Viewer**.
    - *If you do not see "ASL Var Viewer", you did not copy the `Components` folder correctly in Step 2., or you did not restart your LiveSplit after installation*
@@ -67,7 +67,9 @@ To use these features, add the **ASL Var Viewer** component to your layout.
 | **Item Counter** | Tracks quantity of a specific Item ID. | `Variables` -> Type the `itemId` you want to track |
 | **Load Counter** | Tracks loading zones; useful for restart timing. | Same as speed setup (Updates only when timer runs) |
 
+---
+
 ### Troubleshooting & Notes
 * **"Only part of a ReadProcessMemory..." Error**: This is normal in Event Viewer while LiveSplit waits for the game to launch.
 * **"The handle is invalid" Error**: This is another normal error in Event Viewer as the game exits/relaunches.
-* **Inventory Counts**: Item counts may not reset immediately upon exiting to the menu but will correct themselves once you pick up an item or the tracked item updates in-game.
+* **Inventory Counts**: Item counts may not reset immediately upon exiting to the menu but will correct themselves once you pick up an item or the tracked item updates in-game while the timer is running.
