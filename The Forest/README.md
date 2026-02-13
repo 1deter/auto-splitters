@@ -37,16 +37,16 @@ To use these features, add the **ASL Var Viewer** component to your layout.
 
 | Feature | Description | Setup Path |
 | :--- | :--- | :--- |
-| **Speedometer** | Displays accurate Horizontal or Overall speed. | `Variables` -> `horizontalSpeed` or `overallSpeed` |
-| **Passenger Counter** | Shows live count of found passengers. | `Current State` -> `foundPassengers` |
-| **Item Counter** | Tracks quantity of a specific Item ID. | `Variables` -> Type the `itemId` you want to track |
-| **Load Counter** | Tracks loading zones; useful for restart timing. | Same as speed setup (Updates only when timer runs) |
+| **Speedometer** | Displays an accurate Horizontal or Overall speedometer. | `Variables` -> `horizontalSpeed` or `overallSpeed` |
+| **Passenger Counter** | Tracks count of found passengers. | `Current State` -> `foundPassengers` |
+| **Item Counter** | Tracks inventory quantity of a specific Item ID. | `Variables` -> Type the `itemId` you want to track |
+| **Load Counter** | Tracks savegame load count, useful for knowing when to restart (game has a memory leak). | `Current State` -> `loadCounter` |
 
 ---
 
 ### Troubleshooting & Notes
 * **"Only part of a ReadProcessMemory..." Error**: This is normal in Event Viewer while LiveSplit waits for the game to launch.
 * **"The handle is invalid" Error**: This is another normal error in Event Viewer as the game exits/relaunches.
-* **Inventory Counts**: Item counts may not reset immediately upon exiting to the menu but will correct themselves once you restart the timer.
+* **Variable Counters**: Counts will not reset immediately upon exiting to the menu, but will correct themselves once you restart the timer.
 
 *For any issues please contact `d.eter` on Discord, or reach out to [The Forest Series Speedrunning Community](https://discord.gg/kCVSq5nXRE)*
