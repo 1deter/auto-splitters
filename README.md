@@ -1,6 +1,6 @@
 # Auto Splitters
 A collection of LiveSplit auto splitters I've worked on
-## Installation Guide
+## Manual Installation Guide
 
 **Prerequisite**: Ensure **LiveSplit** is completely **CLOSED** before starting.
 
