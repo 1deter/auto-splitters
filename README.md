@@ -24,4 +24,4 @@ A collection of LiveSplit auto splitters I've worked on
 
 ## Usage & Feature Guides
 
-- You can find these inside of each respective game's folder, e.g. for **The Forest**: `The Forest\FEATURES & USAGE README.md`, click on it to read it - similar to a text file.
+- You can find more details inside of each respective game's folder, e.g. for **The Forest**: `The Forest\README.md`.
