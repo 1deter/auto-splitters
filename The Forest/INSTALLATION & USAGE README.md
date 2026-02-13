@@ -1,7 +1,4 @@
-The Forest Auto Splitter
----
-
-## Current Features & Usage
+# Current Features & Usage
 
 ### Start & Reset Triggers
 * **Velocity Start**: Automatically starts the timer when player velocity > 0.05 (movement detected).
@@ -36,7 +33,7 @@ The Forest Auto Splitter
 ### Variable Viewer (Inventory item tracker | Speedometer | Found passengers counter | Load counter)
 To use these features, add the **ASL Var Viewer** component to your layout.
    - In the Layout Editor, click **(+)** -> **Information** -> **ASL Var Viewer**.
-   - *If you do not see "ASL Var Viewer", you did not copy the `Components` folder correctly in Step 2., or you did not restart your LiveSplit after installation*
+   - *If you do not see "ASL Var Viewer", you did not copy the `Components\` folder correctly in Step 2 of the installation guide, or you did not restart your LiveSplit after installation*
 
 | Feature | Description | Setup Path |
 | :--- | :--- | :--- |
