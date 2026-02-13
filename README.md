@@ -1,7 +1,7 @@
 # Auto Splitters
 A collection of LiveSplit auto splitters I've worked on.
 
-*Note: **Manual installation is not necessary** if I've already pushed the game to LiveSplit. To check, follow the automatic installation instructions below.*
+*Note: **Manual installation is not necessary** if I've already pushed the game to LiveSplit. To check, follow the automatic installation guide below.*
 
 ## Automatic Installation Guide
 
