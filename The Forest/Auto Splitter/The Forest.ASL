@@ -452,6 +452,7 @@ update
         print("in the if block (timer not running, vars aren't cleared)");
         foreach (int id in vars.itemTracker.Keys)
         {
+            print("Setting " + id + " to zero");
             ((IDictionary<string, object>)vars)[id.ToString()] = 0;
         }
         vars.itemTracker.Clear();
