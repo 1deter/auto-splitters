@@ -404,6 +404,7 @@ init
     vars.timeSnapshot = 0.0;
     vars.overallSpeed = 0.0;
     vars.horizontalSpeed = 0.0;
+    vars.pendingSplit = false;
 
     vars.cleared = true;
 
@@ -460,12 +461,54 @@ update
         print("vars cleared");
         vars.cleared = true;
     }
-    float XVel = vars.Helper.Read<float>(current.fpCharacter + 0x168);
-    float YVel = vars.Helper.Read<float>(current.fpCharacter + 0x16C);
-    float ZVel = vars.Helper.Read<float>(current.fpCharacter + 0x170);
 
-    vars.overallSpeed = Math.Truncate(Math.Sqrt(Math.Pow(XVel, 2) + Math.Pow(YVel, 2) + Math.Pow(ZVel, 2)) * 100) / 100; // ((IDictionary<string, object>)vars)["overallSpeed"]
-    vars.horizontalSpeed =  Math.Truncate(Math.Sqrt(Math.Pow(XVel, 2) + Math.Pow(ZVel, 2)) * 100) / 100; // ((IDictionary<string, object>)vars)["horizontalSpeed"]
+    if (timer.CurrentPhase == TimerPhase.Running)
+    {
+        float XVel = vars.Helper.Read<float>(current.fpCharacter + 0x188); // if it changes offsets then im cooked, had to update once already // 0x188
+        float YVel = vars.Helper.Read<float>(current.fpCharacter + 0x18C); // 0x18C
+        float ZVel = vars.Helper.Read<float>(current.fpCharacter + 0x190); // 0x190
+
+        vars.overallSpeed = Math.Truncate(Math.Sqrt(Math.Pow(XVel, 2) + Math.Pow(YVel, 2) + Math.Pow(ZVel, 2)) * 100) / 100; // ((IDictionary<string, object>)vars)["overallSpeed"]
+        vars.horizontalSpeed =  Math.Truncate(Math.Sqrt(Math.Pow(XVel, 2) + Math.Pow(ZVel, 2)) * 100) / 100; // ((IDictionary<string, object>)vars)["horizontalSpeed"]
+
+        foreach (IntPtr itemPtr in current.inventory) 
+        {
+            int amount = vars.Helper.Read<int>(itemPtr + 0x14);
+            int itemId = vars.Helper.Read<int>(itemPtr + 0x10);
+            if (itemId > 311 || itemId < 29 || itemId == 302) continue;
+
+            bool alreadyTracked = vars.itemTracker.ContainsKey(itemId);
+
+            if (!alreadyTracked)
+            {   
+                print("We detected a new item entering the itemtracker: " + itemId + " amount: " + amount);
+                vars.itemTracker[itemId] = amount;
+                ((IDictionary<string, object>)vars)[itemId.ToString()] = amount;
+
+                if (settings["itemSplit_" + itemId] && settings["Item Splits"])
+                {
+                    print("item splitting is on for new items so we're splitting");
+                    vars.pendingSplit = true;
+                }
+            }
+            else
+            {
+                int oldAmount = vars.itemTracker[itemId];
+
+                if (oldAmount != amount)
+                {
+                    print(itemId + " changed to amount " + amount);
+                    vars.itemTracker[itemId] = amount;
+                    ((IDictionary<string, object>)vars)[itemId.ToString()] = amount;
+                    if (settings["multiItemSplit_" + itemId] && settings["Item Splits"])
+                    {
+                        print("Multisplit was enabled so we're splitting");
+                        vars.pendingSplit = true;
+                    }
+                }
+            }
+        }
+    }
 }
 
 start
@@ -501,46 +544,10 @@ split
         vars.cleared = false;
     }
 
-    if (settings["Item Splits"])
+    if (settings["Item Splits"] && vars.pendingSplit)
     {
-        foreach (IntPtr itemPtr in current.inventory) 
-        {
-            int itemId = vars.Helper.Read<int>(itemPtr + 0x10);
-            if (itemId > 311 || itemId < 29 || itemId == 302) continue;
-
-            int amount = vars.Helper.Read<int>(itemPtr + 0x14);
-
-            bool alreadyTracked = vars.itemTracker.ContainsKey(itemId);
-
-            if (!alreadyTracked)
-            {   
-                print("We detected a new item entering the itemtracker: " + itemId + " amount: " + amount);
-                vars.itemTracker[itemId] = amount;
-                ((IDictionary<string, object>)vars)[itemId.ToString()] = amount;
-
-                if (settings["itemSplit_" + itemId] && settings["Item Splits"])
-                {
-                    print("item splitting is on for new items so setting the newpickup var");
-                    return true;
-                }
-            }
-            else
-            {
-                int oldAmount = vars.itemTracker[itemId];
-
-                if (oldAmount != amount)
-                {
-                    print(itemId + " changed to amount " + amount);
-                    vars.itemTracker[itemId] = amount;
-                    ((IDictionary<string, object>)vars)[itemId.ToString()] = amount;
-                    if (settings["multiItemSplit_" + itemId] && settings["Item Splits"])
-                    {
-                        print("Multisplit was enabled so we're splitting");
-                        return true;
-                    }
-                }
-            }
-        }
+        vars.pendingSplit = false;
+        return true;
     }
 
     if (settings["Cave Splits"])
