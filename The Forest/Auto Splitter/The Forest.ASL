@@ -464,9 +464,9 @@ update
 
     if (timer.CurrentPhase == TimerPhase.Running)
     {
-        float XVel = vars.Helper.Read<float>(current.fpCharacter + 0x188); // if it changes offsets then im cooked, had to update once already // 0x188
-        float YVel = vars.Helper.Read<float>(current.fpCharacter + 0x18C); // 0x18C
-        float ZVel = vars.Helper.Read<float>(current.fpCharacter + 0x190); // 0x190
+        float XVel = vars.Helper.Read<float>(current.fpCharacter + 0x168); // if it changes offsets then im cooked, had to update once already // 0x188
+        float YVel = vars.Helper.Read<float>(current.fpCharacter + 0x16C); // 0x18C
+        float ZVel = vars.Helper.Read<float>(current.fpCharacter + 0x170); // 0x190
 
         vars.overallSpeed = Math.Truncate(Math.Sqrt(Math.Pow(XVel, 2) + Math.Pow(YVel, 2) + Math.Pow(ZVel, 2)) * 100) / 100; // ((IDictionary<string, object>)vars)["overallSpeed"]
         vars.horizontalSpeed =  Math.Truncate(Math.Sqrt(Math.Pow(XVel, 2) + Math.Pow(ZVel, 2)) * 100) / 100; // ((IDictionary<string, object>)vars)["horizontalSpeed"]
