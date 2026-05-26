@@ -448,6 +448,14 @@ init
 
 update
 {
+
+    float XVel = vars.Helper.Read<float>(current.fpCharacter + 0x168); // if it changes offsets then im cooked, had to update once already // 0x188
+    float YVel = vars.Helper.Read<float>(current.fpCharacter + 0x16C); // 0x18C
+    float ZVel = vars.Helper.Read<float>(current.fpCharacter + 0x170); // 0x190
+
+    vars.overallSpeed = Math.Truncate(Math.Sqrt(Math.Pow(XVel, 2) + Math.Pow(YVel, 2) + Math.Pow(ZVel, 2)) * 100) / 100; // ((IDictionary<string, object>)vars)["overallSpeed"]
+    vars.horizontalSpeed =  Math.Truncate(Math.Sqrt(Math.Pow(XVel, 2) + Math.Pow(ZVel, 2)) * 100) / 100; // ((IDictionary<string, object>)vars)["horizontalSpeed"]
+
     if (!vars.cleared && timer.CurrentPhase == TimerPhase.NotRunning) // !current.loaded && // && vars.itemTracker.Count > 0 && current.inMenu
     {
         print("in the if block (timer not running, vars aren't cleared)");
@@ -464,12 +472,6 @@ update
 
     if (timer.CurrentPhase == TimerPhase.Running)
     {
-        float XVel = vars.Helper.Read<float>(current.fpCharacter + 0x168); // if it changes offsets then im cooked, had to update once already // 0x188
-        float YVel = vars.Helper.Read<float>(current.fpCharacter + 0x16C); // 0x18C
-        float ZVel = vars.Helper.Read<float>(current.fpCharacter + 0x170); // 0x190
-
-        vars.overallSpeed = Math.Truncate(Math.Sqrt(Math.Pow(XVel, 2) + Math.Pow(YVel, 2) + Math.Pow(ZVel, 2)) * 100) / 100; // ((IDictionary<string, object>)vars)["overallSpeed"]
-        vars.horizontalSpeed =  Math.Truncate(Math.Sqrt(Math.Pow(XVel, 2) + Math.Pow(ZVel, 2)) * 100) / 100; // ((IDictionary<string, object>)vars)["horizontalSpeed"]
 
         foreach (IntPtr itemPtr in current.inventory) 
         {
@@ -533,7 +535,7 @@ start
 
     if (settings["velocityStart"])
     {
-        return (current.loaded && vars.overallSpeed > 0.05); // tweak higher/lower to adjust sensitivity
+        return (current.loaded && vars.overallSpeed > 0.15); // tweak higher/lower to adjust sensitivity
     }
 }
 
